@@ -1,2 +1,11 @@
+[project]
+name = "zepp-steps"
+version = "0.1.0"
+description = "Zepp Steps API"
+dependencies = [
+    "requests",
+    "Flask"
+]
+
 [tool.vercel]
 entrypoint = "api.steps:handler"
