@@ -7,7 +7,7 @@ import requests
 import urllib.parse
 from http.server import BaseHTTPRequestHandler
 
-import zepp_login
+from api import zepp_login
 
 class handler(BaseHTTPRequestHandler):
     def send_json_response(self, status_code, payload):

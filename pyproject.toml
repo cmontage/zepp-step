@@ -7,5 +7,4 @@ dependencies = [
     "Flask"
 ]
 
-[tool.vercel]
-entrypoint = "api.steps:handler"
+
