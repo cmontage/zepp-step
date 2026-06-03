@@ -5,17 +5,9 @@ import datetime
 import time
 import requests
 import urllib.parse
-import importlib.util
 from http.server import BaseHTTPRequestHandler
 
-# Find zepp-login.py in the parent directory (project root)
-root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, root_dir)
-
-# Import zepp-login using importlib because of the hyphen in the filename
-spec = importlib.util.spec_from_file_location("zepp_login", os.path.join(root_dir, "zepp-login.py"))
-zepp_login = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(zepp_login)
+import zepp_login
 
 class handler(BaseHTTPRequestHandler):
     def send_json_response(self, status_code, payload):
@@ -33,17 +25,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
-
-    def do_GET(self):
-        if self.path == '/' or self.path == '/index.html':
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html; charset=utf-8')
-            self.end_headers()
-            with open(os.path.join(root_dir, 'index.html'), 'rb') as f:
-                self.wfile.write(f.read())
-        else:
-            self.send_response(404)
-            self.end_headers()
 
     def do_POST(self):
         try:
