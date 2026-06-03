@@ -1,2 +1,10 @@
+[project]
+name = "zepp-life-steps"
+version = "0.1.0"
+description = "Zepp Life Steps web app"
+dependencies = [
+    "requests"
+]
+
 [tool.vercel]
 entrypoint = "api.steps:handler"
