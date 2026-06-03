@@ -244,7 +244,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-variant-numeric: tabular-nums;
+            border: none;
+            outline: none;
+            text-align: center;
+            width: 100%;
+            caret-color: var(--accent-1);
         }
+
+        .steps-number::-webkit-inner-spin-button, 
+        .steps-number::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+
+        .steps-number {
+            -moz-appearance: textfield;
+        }
+
 
         .slider-container {
             display: flex;
@@ -511,7 +527,7 @@
                 <label class="form-label">目标步数</label>
                 
                 <div class="steps-display">
-                    <div class="steps-number" id="stepsDisplay">20000</div>
+                    <input type="number" class="steps-number" id="stepsDisplay" value="20000" min="1000" max="98800" step="100">
                 </div>
 
                 <div class="slider-container">
@@ -560,14 +576,16 @@
                 }
             });
 
-            // Format number with commas
-            const formatNumber = (num) => {
-                return parseInt(num).toLocaleString('en-US');
-            };
-
             // Sync slider and display
             stepsSlider.addEventListener('input', (e) => {
-                stepsDisplay.textContent = formatNumber(e.target.value);
+                stepsDisplay.value = e.target.value;
+            });
+
+            // Sync display and slider
+            stepsDisplay.addEventListener('input', (e) => {
+                let val = parseInt(e.target.value) || 0;
+                if (val > 98800) val = 98800;
+                stepsSlider.value = val;
             });
 
             // Random button logic
@@ -578,7 +596,7 @@
                 const random = Math.round((Math.random() * (max - min) + min) / 100) * 100;
                 
                 stepsSlider.value = random;
-                stepsDisplay.textContent = formatNumber(random);
+                stepsDisplay.value = random;
                 
                 // Add a small bounce animation to the display
                 stepsDisplay.style.transform = 'scale(1.1)';
@@ -653,7 +671,7 @@
                     }
 
                     if (response.ok && data.success) {
-                        showToast('success', `✅ 步数修改成功！已更新为 ${formatNumber(steps)} 步。请打开微信运动同步。`);
+                        showToast('success', `✅ 步数修改成功！已更新为 ${steps} 步。请打开微信运动同步。`);
                     } else {
                         showToast('error', data.message || '修改失败，请重试');
                     }
