@@ -54,7 +54,7 @@ class handler(BaseHTTPRequestHandler):
             try:
                 login_result = zepp_login.zepp_login(account, password)
             except Exception as e:
-                self.send_json_response(500, {"success": False, "message": f"登录失败: {str(e)}"})
+                self.send_json_response(400, {"success": False, "message": f"登录失败: {str(e)}"})
                 return
             
             login_token = login_result.login_token
@@ -93,9 +93,9 @@ class handler(BaseHTTPRequestHandler):
                 if res_data.get('code') == 1:
                     self.send_json_response(200, {"success": True, "message": "更新步数成功"})
                 else:
-                    self.send_json_response(500, {"success": False, "message": f"更新步数失败: {json.dumps(res_data)}"})
+                    self.send_json_response(400, {"success": False, "message": f"更新步数失败: {json.dumps(res_data)}"})
             else:
-                self.send_json_response(500, {"success": False, "message": f"更新步数失败: HTTP {response.status_code}"})
+                self.send_json_response(400, {"success": False, "message": f"更新步数失败: HTTP {response.status_code}"})
 
         except Exception as e:
             self.send_json_response(500, {"success": False, "message": f"服务器内部错误: {str(e)}"})
