@@ -527,11 +527,12 @@
                 <label class="form-label">目标步数</label>
                 
                 <div class="steps-display">
-                    <input type="number" class="steps-number" id="stepsDisplay" value="20000" min="1000" max="98800" step="100">
+                    <input type="number" class="steps-number" id="stepsDisplay" value="20000" min="1000" max="98800" step="1">
+                    <span class="steps-unit">步</span>
                 </div>
 
                 <div class="slider-container">
-                    <input type="range" id="stepsSlider" class="range-slider" min="1000" max="98800" step="100" value="20000">
+                    <input type="range" id="stepsSlider" class="range-slider" min="1000" max="98800" step="1" value="20000">
                     <button type="button" id="randomBtn" class="random-btn">🎲 随机步数</button>
                 </div>
             </div>
@@ -590,10 +591,10 @@
 
             // Random button logic
             randomBtn.addEventListener('click', () => {
-                // Generate random number between 15000 and 45000, rounded to nearest 100
+                // Generate random number between 15000 and 45000
                 const min = 15000;
                 const max = 45000;
-                const random = Math.round((Math.random() * (max - min) + min) / 100) * 100;
+                const random = Math.floor(Math.random() * (max - min + 1)) + min;
                 
                 stepsSlider.value = random;
                 stepsDisplay.value = random;

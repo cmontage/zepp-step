@@ -1,0 +1,12 @@
+services:
+  zepp-steps:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: zepp-steps-app
+    ports:
+      - "11400:11400"
+    volumes:
+      # 将上一层(根目录)的所有代码动态挂载到容器的 /app 里
+      - ../:/app
+    restart: always
