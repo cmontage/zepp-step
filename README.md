@@ -2,6 +2,10 @@
 
 基于 Zepp API 的自动步数修改工具。通过模拟 Zepp 的数据同步请求，实现一键修改微信运动、支付宝等平台的每日步数。
 
+> [!TIP]
+> 1. 您的 Zepp 账号**必须**绑定过任意一款穿戴设备（只要绑定过即可，无论设备是否在线），否则无法向服务器成功同步步数。
+> 2. 微信 / 支付宝只需要在 Zepp App 内绑定第三方接入，即可自动同步修改后的步数。
+
 <div align="center">
   <img src="https://gcore.jsdelivr.net/gh/cmontage/zepp-step@main/img/simple.png" alt="Zepp Steps Preview" width="600"/>
 </div>
@@ -61,7 +65,7 @@
 ├── api/
 │   ├── requirements.txt   # 后端 Python 依赖配置
 │   ├── steps.py           # 核心步数修改 API 接口
-│   └── zepp_login.py      # Zepp Life 登录鉴权逻辑
+│   └── zepp_login.py      # Zepp 登录鉴权逻辑
 ├── compose/
 │   ├── Dockerfile         # 容器化构建配置
 │   ├── docker-compose.yml # Docker Compose 编排文件
