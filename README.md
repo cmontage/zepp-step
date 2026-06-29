@@ -2,6 +2,10 @@
 
 基于 Zepp API 的自动步数修改工具。通过模拟 Zepp 的数据同步请求，实现一键修改微信运动、支付宝等平台的每日步数。
 
+<div align="center">
+  <img src="https://gcore.jsdelivr.net/gh/cmontage/zepp-step@main/img/simple.png" alt="Zepp Steps Preview" width="600"/>
+</div>
+
 ## ✨ 特性
 
 - **现代化 UI**: 采用玻璃拟态（Glassmorphism）和动态背景的极简前端设计。
